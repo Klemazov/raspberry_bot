@@ -5,7 +5,7 @@ import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 #локальные модули
-from handlers import greet_user, talk_to_me
+from handlers import greet_user, talk_to_me, bash_controls
 
 import settings
 
@@ -26,6 +26,7 @@ def main():
     mybot = Updater(settings.API_KEY, use_context=True, request_kwargs=PROXY)
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(MessageHandler(Filters.text, bash_controls))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
     logging.info("Бот стартовал")
     mybot.start_polling()
