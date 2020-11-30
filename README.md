@@ -4,7 +4,7 @@
 
 1. Клонируем данный репозиторий ```git clone https://github.com/Klemazov/raspberry_bot.git```
 2. Создаем виртуальное окружение ```python3 -m venv venv```
-3. Прописываем ```pip3 -r requirements.txt```
+3. Прописываем ```pip3 install -r requirements.txt```
 4. Создаем файл ```settings.py```
 
     - Данные о вашем прокси
