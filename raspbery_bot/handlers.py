@@ -41,6 +41,14 @@ def pwd_show (update, context):
     command = os.popen('pwd')
     update.message.reply_text(command.read())
 
+def upload(update, context):
+    chat_id = update.message.chat_id
+    print (chat_id)
+    output_path =update.message.text[5:]
+    print(output_path)
+    user_document = open(output_path, 'rb')
+    context.bot.send_document(chat_id=chat_id, document = user_document)
+    user_document.close()
 
 
 
