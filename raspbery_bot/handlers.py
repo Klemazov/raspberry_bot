@@ -1,4 +1,5 @@
 import os 
+import subprocess
 
 from telegram import ReplyKeyboardMarkup
 from keyboard import keyboard
@@ -17,8 +18,12 @@ def talk_to_me(update, context):
 
 def bash_control(update, context):
     command = update.message.text
-    result = BashControls().bash_command(command)
-    update.message.reply_text(result)
+    if 'cd' in command:
+        os.chdir(command[3:])
+        update.message.reply_text(os.popen('pwd').read())
+    else:
+        result = os.popen(command)
+        update.message.reply_text(result.read())
     
 def sensors(update, context):
     print('Вызван /temperature')
@@ -35,5 +40,8 @@ def raspberry_temp(update, context):
 def pwd_show (update, context):
     command = os.popen('pwd')
     update.message.reply_text(command.read())
+
+
+
 
     
