@@ -5,6 +5,8 @@ from telegram import ReplyKeyboardMarkup
 from keyboard import keyboard
 from utils import BashControls
 
+import settings
+
 def greet_user(update, context):
     print('Вызван /start')
     user_id = update.message.from_user['username']
@@ -17,13 +19,17 @@ def talk_to_me(update, context):
     update.message.reply_text(text)
 
 def bash_control(update, context):
-    command = update.message.text
-    if 'cd' in command:
-        os.chdir(command[3:])
-        update.message.reply_text(os.popen('pwd').read())
+    if str(update.message.from_user['id']) != settings.USER_ID:
+        pass
     else:
-        result = os.popen(command)
-        update.message.reply_text(result.read())
+
+        command = update.message.text
+        if 'cd' in command:
+            os.chdir(command[3:])
+            update.message.reply_text(os.popen('pwd').read())
+        else:
+            result = os.popen(command)
+            update.message.reply_text(result.read())
     
 def sensors(update, context):
     print('Вызван /temperature')
