@@ -3,7 +3,7 @@ import logging
 
 # side библиотеки
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-
+from telegram import User
 #локальные модули
 from handlers import greet_user, talk_to_me, bash_control, sensors, pwd_show, raspberry_temp, upload
 
